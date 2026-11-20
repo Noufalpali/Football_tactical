@@ -7,4 +7,4 @@
   transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
 .pc:hover{border-color:var(--blue);transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,0,0,.12)}
 .pc:active{cursor:grabbing}
-.pc.on{background:linear-gradient(135deg,#004d98,#a50044);color:#fff;border-color:transparent;font-weight:600;box-shadow:0 3px 10px rgba(0,77,152,.3)}
+.pc.on{background:linear-gradient(135deg,#004d98,#cbcfff);color:#fff;border-color:transparent;font-weight:600;box-shadow:0 3px 10px rgba(0,77,152,.3)}
