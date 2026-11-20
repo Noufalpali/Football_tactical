@@ -1,4 +1,3 @@
-// Menampilkan galat JavaScript di halaman agar mudah dilaporkan (tidak diam-diam gagal)
 function tampilkanGalat(pesan){
   let b=document.getElementById("galat");
   if(!b){

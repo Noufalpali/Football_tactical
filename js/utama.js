@@ -1,4 +1,3 @@
-// Penghubung: render tab, pilih formasi, dan sinkronkan lapangan, daftar, dan panel
 function render(){
   $("#forms").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.f===state.fm));
   $("#tabs").innerHTML=Object.entries(Features).map(([k,f])=>`<button role="tab" data-t="${k}" aria-selected="${k===state.tab}">${f.label}</button>`).join("");
@@ -7,13 +6,11 @@ function render(){
   $("#hint").textContent=f.hint;
   renderRoster();update();
 }
-// Hitung ulang panel aktif; fitur tanpa gambar sendiri memakai lapangan polos
 function update(){
   const f=Features[state.tab];
   f.update($("#res"));
   if(!f.drawsPitch)draw(slots(),[],[]);
 }
-// Dipanggil setelah lineup berubah
 function refresh(){renderRoster();update()}
 
 Object.keys(F).forEach(k=>{const b=document.createElement("button");b.textContent=k;b.dataset.f=k;$("#forms").appendChild(b)});

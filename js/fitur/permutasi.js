@@ -1,4 +1,3 @@
-// Fitur 2: Permutasi, urutan dan penempatan posisi (urutan penting). Ikut berubah saat skuad diubah.
 Features.per={
   label:"Permutasi",
   hint:"Seret pemain dari daftar ke lapangan, atau seret antarpemain untuk bertukar posisi. Garis putus-putus merah berarti pemain di luar posisi alaminya.",

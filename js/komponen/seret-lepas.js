@@ -1,7 +1,5 @@
-// Seret-dan-lepas interaktif layaknya papan taktik (tactical board) asli
 let drag = null;
 
-// Tempatkan pemain di slot; jika sudah jadi starter, tukar dengan penghuni slot
 function assign(pid, slot){
   const prev = state.lineup.indexOf(pid), occ = state.lineup[slot];
   state.lineup[slot] = pid;
@@ -35,7 +33,6 @@ document.addEventListener("pointermove", e => {
   const dist = Math.hypot(e.clientX - drag.startX, e.clientY - drag.startY);
   if(!drag.moved && dist > 4){
     drag.moved = true;
-    // Jika menyeret pemain dari daftar skuad (bukan dari lapangan), buat elemen bayangan (ghost)
     if(drag.from === null){
       drag.g = document.createElement("div");
       drag.g.className = "ghost";
@@ -46,7 +43,6 @@ document.addEventListener("pointermove", e => {
 
   if(drag.moved){
     if(drag.from !== null){
-      // Papan Taktik Asli: Geser posisi pemain di lapangan secara langsung!
       const s = $("#pitch");
       const pt = s.createSVGPoint();
       pt.x = e.clientX;
@@ -79,8 +75,6 @@ function endDrag(e, cancel){
     const q = pt.matrixTransform(s.getScreenCTM().inverse());
 
     if(d.from !== null){
-      // Selesai menggeser pemain di lapangan:
-      // Cek apakah dilepas tepat di atas pemain lain (jarak < 4.5m) untuk saling tukar posisi
       let targetSlot = -1, minD = 4.5;
       slots().forEach((pos, i) => {
         if(i !== d.from){
@@ -90,14 +84,12 @@ function endDrag(e, cancel){
       });
 
       if(targetSlot >= 0){
-        // Tukar pemain di kedua slot
         const tmp = state.lineup[d.from];
         state.lineup[d.from] = state.lineup[targetSlot];
         state.lineup[targetSlot] = tmp;
       }
       refresh();
     } else {
-      // Pemain dari daftar skuad dijatuhkan ke slot lapangan terdekat
       let best = -1, bd = 9;
       slots().forEach((c, i) => {
         const dd = Math.hypot(c.x - q.x, c.y - q.y);
@@ -106,7 +98,6 @@ function endDrag(e, cancel){
       if(best >= 0) assign(d.pid, best);
     }
   } else if(d.from !== null && Features[state.tab] && Features[state.tab].onNodeClick){
-    // Klik biasa tanpa geser (misal memilih rute umpan Dijkstra di tab Graf)
     Features[state.tab].onNodeClick(d.from);
   }
 }

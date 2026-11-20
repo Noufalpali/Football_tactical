@@ -1,4 +1,3 @@
-// Status aplikasi, slot posisi per formasi, kelola skuad, dan registri fitur
 const state = {
   fm: "4-3-3",
   tab: "kom",
@@ -6,16 +5,15 @@ const state = {
   B: 10,
   nextA: false,
   lineup: [],
-  pos: null // koordinat dinamis 11 pemain di lapangan [{x, y, l}, ...]
+  pos: null
 };
-const Features = {}; // tiap fitur mendaftar di js/fitur/*.js
+const Features = {}; 
 
-// Koordinat awal standar formasi (lapangan 68 x 105)
 function defaultSlots(fm = state.fm){
   const pattern = F[fm] || [4, 3, 3];
   const numLines = pattern.length;
   const ys = numLines === 4 ? [78, 62, 44, 26] : [76, 54, 30];
-  const o = [{ x: 34, y: 95, l: 0 }]; // Kiper
+  const o = [{ x: 34, y: 95, l: 0 }]; 
   pattern.forEach((c, i) => {
     const lineL = i === 0 ? 1 : (i === pattern.length - 1 ? 3 : 2);
     for (let j = 0; j < c; j++) {
@@ -29,7 +27,6 @@ function defaultSlots(fm = state.fm){
   return o;
 }
 
-// Batasi koordinat agar tetap di dalam lapangan hijau
 function clampPos(x, y){
   return {
     x: Math.max(5, Math.min(63, Math.round(x * 10) / 10)),
@@ -37,7 +34,6 @@ function clampPos(x, y){
   };
 }
 
-// Koordinat 11 slot untuk formasi aktif (bisa digeser bebas seperti tactical board)
 function slots(){
   if(!state.pos || state.pos.length !== 11){
     state.pos = defaultSlots(state.fm);
@@ -45,13 +41,11 @@ function slots(){
   return state.pos;
 }
 
-// Kembalikan posisi ke pola formasi dasar
 function resetPos(fm = state.fm){
   state.fm = fm;
   state.pos = defaultSlots(fm);
 }
 
-// Susunan otomatis: pemain pertama tiap lini menurut urutan di data-pemain.js
 function auto(){
   state.pos = defaultSlots(state.fm);
   const S = state.pos, used = new Set(), L = [], idx = R.map((r, i) => i);
@@ -69,12 +63,10 @@ function auto(){
   state.A = 0; state.B = L.length - 1; state.nextA = false;
 }
 
-// Jumlah starter yang berada di luar posisi alaminya
 function offCount(){
   return slots().filter((q, i) => R[state.lineup[i]].l !== q.l).length;
 }
 
-// Analisis metrik papan taktik (kedalaman, lebar, dan panjang tim)
 function hitungMetrikTaktik(){
   const p = slots();
   const bek = p.slice(1).filter((_, i) => R[state.lineup[i + 1]].l === 1 || p[i + 1].l === 1);
@@ -96,13 +88,11 @@ function hitungMetrikTaktik(){
   return { kedalamanBek, panjangTim, lebarTim, gayaBertahan };
 }
 
-// Deteksi peran taktis pemain berdasarkan posisinya di papan
 function deteksiPeranPemain(q, i){
   const r = R[state.lineup[i]];
   if (i === 0 || q.l === 0) {
     return q.y < 90 ? "Sweeper Keeper" : "Kiper Garis";
   }
-  // Berdasarkan sumbu vertikal Y
   if (q.y >= 68) {
     if (q.x <= 16) return "Bek Sayap Kiri (LB/LWB)";
     if (q.x >= 52) return "Bek Sayap Kanan (RB/RWB)";
@@ -114,14 +104,11 @@ function deteksiPeranPemain(q, i){
     if (q.y >= 58) return "Gelandang Bertahan (DM/Pivot)";
     return "Gelandang Tengah (CM)";
   }
-  // Zona Serang
   if (q.x <= 18) return "Penyerang Sayap Kiri (LW)";
   if (q.x >= 50) return "Penyerang Sayap Kanan (RW)";
   if (q.y >= 32) return "Gelandang Serang / False 9 (AM)";
   return "Penyerang Tengah (CF/ST)";
 }
-
-// Tambah pemain; mengembalikan pesan galat, atau null jika berhasil
 function addPlayer(n, no, l){
   n = n.trim().slice(0, 30);
   if (!n) return "Nama pemain wajib diisi.";
@@ -131,8 +118,6 @@ function addPlayer(n, no, l){
   R.push({ n, s: w.length > 1 ? w[0][0] + ". " + w[w.length - 1] : n, l, no });
   return null;
 }
-
-// Hapus pemain ke-i; starter yang dihapus digantikan pemain cadangan
 function removePlayer(i){
   if (R.length <= 11) return "Skuad minimal 11 pemain.";
   const was = state.lineup.indexOf(i);
@@ -145,8 +130,6 @@ function removePlayer(i){
   state.lineup = state.lineup.map(k => k > i ? k - 1 : k);
   return null;
 }
-
-// Ringkasan skuad aktif + tombol pindah ke tab Skuad (dipakai tab Kombinasi dan Permutasi)
 function skuadInfo(){
   const c = [0, 1, 2, 3].map(l => R.filter(x => x.l === l).length);
   return `<p class="mut">Skuad saat ini: <b>${R.length} pemain</b> (${c.map((n, i) => n + " " + LN[i].toLowerCase()).join(", ")}). <button id="goSkuad">Tambah atau hapus pemain</button></p>`;

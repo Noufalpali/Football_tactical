@@ -1,5 +1,3 @@
-// Fitur 4: Papan Taktik Interaktif (Tactical Board Asli)
-// Pemain dapat digeser bebas langsung di lapangan menggunakan mouse atau layar sentuh.
 Features.formasi = {
   label: "Formasi",
   hint: "Geser pemain langsung di lapangan hijau untuk menyusun taktik, kedalaman garis, dan formasi bebas seperti papan taktik pelatih asli.",
@@ -71,22 +69,17 @@ Features.formasi = {
   },
   onClick(e){
     const target = e.target;
-    // Pilihan formasi cepat
     if(target.dataset.setfm){
       state.fm = target.dataset.setfm;
       resetPos(state.fm);
       refresh();
       return;
     }
-
-    // Reset posisi ke baku
     if(target.id === "btn-reset"){
       resetPos(state.fm);
       refresh();
       return;
     }
-
-    // Ratakan garis lini (bek, gelandang, penyerang diratakan sumbu Y-nya)
     if(target.id === "btn-ratakan"){
       const p = slots();
       [1, 2, 3].forEach(l => {
@@ -99,8 +92,6 @@ Features.formasi = {
       refresh();
       return;
     }
-
-    // Dorong garis pertahanan maju (+5m ke arah gawang lawan, y berkurang)
     if(target.id === "btn-maju"){
       const p = slots();
       p.slice(1).forEach(q => {
@@ -109,8 +100,6 @@ Features.formasi = {
       refresh();
       return;
     }
-
-    // Tarik garis pertahanan mundur (-5m mendekat ke gawang sendiri, y bertambah)
     if(target.id === "btn-mundur"){
       const p = slots();
       p.slice(1).forEach(q => {

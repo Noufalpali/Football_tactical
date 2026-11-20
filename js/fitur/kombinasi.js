@@ -1,4 +1,3 @@
-// Fitur 1: Kombinasi, memilih starter dari skuad (urutan tidak penting)
 Features.kom={
   label:"Kombinasi",
   hint:"Seret pemain dari daftar ke lapangan, atau seret antarpemain untuk bertukar posisi. Garis putus-putus merah berarti pemain di luar posisi alaminya.",

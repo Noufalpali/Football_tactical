@@ -1,9 +1,6 @@
-// Data: formasi, nama lini, warna, dan skuad. Ubah skuad di sini.
-// Skuad dihimpun dari hasil pencarian web (Nov 2026); periksa situs resmi klub untuk daftar terbaru.
 const F={"4-4-2":[4,4,2],"4-3-3":[4,3,3],"3-5-2":[3,5,2]};
 const LN=["Kiper","Bek","Gelandang","Penyerang"];
 const COL=["#f2c94c","#74b9ff","#ffffff","#ff8a65"];
-// l = lini alami: 0 kiper, 1 bek, 2 gelandang, 3 penyerang. Urutan dalam satu lini = urutan susunan otomatis (kiri ke kanan).
 const R=[
 {n:"Joan García",s:"García",l:0,no:1},{n:"Wojciech Szczęsny",s:"Szczęsny",l:0,no:13},{n:"Dominik Livaković",s:"Livaković",l:0,no:25},
 {n:"Gerard Martín",s:"G. Martín",l:1,no:18},{n:"Pau Cubarsí",s:"Cubarsí",l:1,no:5},{n:"Andreas Christensen",s:"Christensen",l:1,no:15},{n:"Jules Koundé",s:"Koundé",l:1,no:23},{n:"Eric García",s:"E. García",l:1,no:24},{n:"Alejandro Balde",s:"Balde",l:1,no:3},{n:"Joao Cancelo",s:"Cancelo",l:1,no:2},{n:"Xavi Espart",s:"Espart",l:1,no:12},

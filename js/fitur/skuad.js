@@ -1,4 +1,3 @@
-// Fitur 5: Kelola skuad (tambah dan hapus pemain)
 Features.skuad={
   label:"Skuad",
   hint:"Tambah pemain baru atau hapus pemain. Jumlah kombinasi di tab Kombinasi ikut berubah.",

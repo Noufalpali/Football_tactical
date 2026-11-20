@@ -1,4 +1,3 @@
-// Fitur 3: Graf, jaringan umpan antarpemain (simpul = pemain, sisi = jarak)
 function dijkstra(p,E,s){
   const m=p.length,dist=Array(m).fill(Infinity),prev=Array(m).fill(-1),done=Array(m).fill(false);
   dist[s]=0;

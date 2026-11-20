@@ -1,4 +1,3 @@
-// Menggambar lapangan, sisi graf, jalur terpilih, dan pemain
 function draw(p,E,path){
   const on=new Set(path),pe=new Set();
   for(let i=1;i<path.length;i++)pe.add(Math.min(path[i-1],path[i])+"-"+Math.max(path[i-1],path[i]));
