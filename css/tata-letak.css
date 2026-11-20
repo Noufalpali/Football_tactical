@@ -8,6 +8,6 @@ main{max-width:1040px;margin:18px auto 48px;padding:0 18px;display:grid;grid-tem
 
 [role=tablist]{display:flex;gap:4px;flex-wrap:wrap;margin:6px 0 18px;background:var(--bg);padding:5px;border-radius:999px;width:fit-content;max-width:100%}
 [role=tablist] button{border:0;background:transparent;padding:7px 16px}
-[role=tablist] button[aria-selected="true"]{background:linear-gradient(135deg,#004d98,#a50044);color:#fff}
+[role=tablist] button[aria-selected="true"]{background:linear-gradient(135deg,#004d98,#cbcfff);color:#fff}
 [role=tablist] button:hover{box-shadow:none;transform:none;background:var(--card)}
-[role=tablist] button[aria-selected="true"]:hover{background:linear-gradient(135deg,#004d98,#a50044)}
+[role=tablist] button[aria-selected="true"]:hover{background:linear-gradient(135deg,#004d98,#cbcfff)}
