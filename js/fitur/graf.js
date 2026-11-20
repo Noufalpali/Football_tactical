@@ -12,7 +12,7 @@ function dijkstra(p,E,s){
 // Sisi: pasangan pemain dengan jarak <= ambang; ambang dinaikkan sampai graf terhubung
 function buildGraph(){
   const p=slots(),m=p.length;let E;
-  for(let t=26;;t+=2){
+  for(let t=26;t<=200;t+=2){
     E=[];
     for(let i=0;i<m;i++)for(let j=i+1;j<m;j++){const d=Math.hypot(p[i].x-p[j].x,p[i].y-p[j].y);if(d<=t)E.push([i,j,d])}
     if(dijkstra(p,E,0).dist.every(isFinite))break;
@@ -28,7 +28,7 @@ Features.graf={
     const{p,E}=buildGraph(),{A,B}=state,r=dijkstra(p,E,A);let path=[];
     if(B!=null)for(let v=B;v>=0;v=r.prev[v])path.unshift(v);
     draw(p,E,path);
-    const nm=i=>R[state.lineup[i]].s;
+    const nm=i=>esc(R[state.lineup[i]].s);
     const deg=p.map((_,i)=>E.filter(e=>e[0]===i||e[1]===i).length);
     const top=deg.map((d,i)=>[d,i]).sort((a,b)=>b[0]-a[0]).slice(0,3),V=p.length;
     res.innerHTML=`<div class="f">|V| = ${V}, |E| = ${E.length}, kepadatan = ${(2*E.length/(V*(V-1))).toFixed(2)}</div>

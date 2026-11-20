@@ -20,5 +20,5 @@ Object.keys(F).forEach(k=>{const b=document.createElement("button");b.textConten
 $("#forms").addEventListener("click",e=>{const k=e.target.dataset.f;if(k){state.fm=k;auto();render()}});
 $("#tabs").addEventListener("click",e=>{const t=e.target.dataset.t;if(t){state.tab=t;render()}});
 $("#body").addEventListener("input",update);
-$("#body").addEventListener("click",e=>{const f=Features[state.tab];if(f.onClick)f.onClick(e)});
+$("#body").addEventListener("click",e=>{try{const f=Features[state.tab];if(f.onClick)f.onClick(e)}catch(err){tampilkanGalat(err.message)}});
 auto();render();

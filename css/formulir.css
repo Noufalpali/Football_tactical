@@ -1,0 +1,9 @@
+/* Formulir tab Skuad, daftar pemain, dan slider tab Formasi */
+input[type=text],select,input[type=number]{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+input[type=text]{width:170px}
+input[type=number]{width:78px}
+.pl{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--line);font-size:14px}
+.pl button{padding:2px 10px;font-size:13px}
+.st{font-size:12px;color:var(--mut)}
+.sl{margin:12px 0}
+.sl small{display:block;color:var(--mut)}
